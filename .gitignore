@@ -1,11 +1,23 @@
-# Manim output folders
-media/
+# --- Python & System ---
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# VS Code settings
+# --- Virtual Environments (НАЈВАЖНО!) ---
+.venv/
+.venv312/
+env/
+venv/
+ENV/
+
+# --- Manim Output (Видеа и слики) ---
+# Ги игнорираме бидејќи се генерираат, не се код.
+media/
+
+# --- VS Code Settings ---
 .vscode/
 
-# Python environments
-venv/
-env/
+# --- OS Files ---
+.DS_Store
+Thumbs.db
