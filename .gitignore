@@ -1,0 +1,11 @@
+# Manim output folders
+media/
+__pycache__/
+*.pyc
+
+# VS Code settings
+.vscode/
+
+# Python environments
+venv/
+env/
