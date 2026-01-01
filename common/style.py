@@ -11,8 +11,20 @@ MK_BLUE = "#0055D4"
 MK_RED = "#D40000"
 MK_BLACK = "#000000"
 MK_GRAY = "#555555"
-MK_GREEN = "#228B22"   # Forest Green - одлична за точни одговори
-MK_ORANGE = "#ED8121"  # Стандардна Manim портокалова за истакнување
+MK_GREEN = "#228B22"
+MK_ORANGE = "#ED8121"
+
+# --- LATEX КОНФИГУРАЦИЈА (БЕЗБЕДНА) ---
+
+# Unicode-compatible LaTeX template for Cyrillic (XeLaTeX)
+my_template = TexTemplate()
+my_template.tex_compiler = "xelatex"
+my_template.output_format = ".xdv"
+my_template.add_to_preamble(r"\usepackage{amsmath}")
+my_template.add_to_preamble(r"\usepackage{amssymb}")
+my_template.add_to_preamble(r"\usepackage{xcolor}")  # За бои
+my_template.add_to_preamble(r"\usepackage{fontspec}")
+my_template.add_to_preamble(r"\setmainfont{Arial}")  # Arial supports Cyrillic
 
 class TextbookScene(Scene):
     """
@@ -22,9 +34,7 @@ class TextbookScene(Scene):
         pass
 
     def get_text(self, text_str, color=MK_BLACK, size=24, is_bold=False):
-        """
-        Креира текст објект кој поддржува кирилица (користи Arial).
-        """
+        # За кирилица користиме Text() со Arial, тоа работи без LaTeX
         font_weight = "BOLD" if is_bold else "NORMAL"
         return Text(
             text_str, 
@@ -35,11 +45,10 @@ class TextbookScene(Scene):
         )
 
     def get_math(self, tex_str, color=MK_BLACK, size=48):
-        """
-        Креира математичка формула (LaTeX).
-        """
+        # За формули користиме MathTex со нашиот темплејт
         return MathTex(
             tex_str, 
             color=color, 
-            font_size=size
+            font_size=size,
+            tex_template=my_template
         )
