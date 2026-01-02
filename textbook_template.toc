@@ -1,0 +1,13 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Рационални броеви}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Вовед}{5}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Броевна оска}{5}{subsection.1.1.1}%
+\contentsline {section}{\numberline {1.2}Операции со рационални броеви}{5}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Собирање и одземање}{5}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Множење и делење}{5}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Вежби}{5}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Квадратна функција}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Дефиниција и график}{7}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Координатен систем}{7}{subsection.2.1.1}%
+\contentsline {chapter}{\numberline {3}Дополнителни ресурси}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Листа на формули}{9}{section.3.1}%
