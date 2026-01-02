@@ -1,12 +1,12 @@
-// Задолжителен header за кирилица
+// Задолжителен header за кирилица + PNG високо квалитетен output
 settings.tex="pdflatex";
-settings.outformat="pdf";
+settings.outformat="png";
+settings.render=32; // Висока резолуција за принт (32x antialiasing)
 texpreamble("\usepackage[T2A]{fontenc}");
 texpreamble("\usepackage[utf8]{inputenc}");
 texpreamble("\usepackage[russian]{babel}");
-texpreamble("\usepackage{lmodern}"); // Latin Modern фонтови наместо Computer Modern
 
-size(500, 400);
+size(1200, 960); // Висока резолуција (3x поголемо)
 
 // Увоз на модул за графикони
 import graph;

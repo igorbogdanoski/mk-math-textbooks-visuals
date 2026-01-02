@@ -1,0 +1,271 @@
+% ================================================================
+% МАКЕДОНСКИ МАТЕМАТИЧКИ УЧЕБНИК - LaTeX Template
+% ================================================================
+
+\documentclass[11pt,a4paper]{book}
+
+% ----------------------------------------------------------------
+% КИРИЛИЦА И ФОНТОВИ
+% ----------------------------------------------------------------
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[macedonian,russian,english]{babel}
+\usepackage{lmodern}  % Latin Modern фонтови
+
+% ----------------------------------------------------------------
+% МАТЕМАТИКА
+% ----------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Дефинирање на теореми, дефиниции, примери
+\theoremstyle{definition}
+\newtheorem{definition}{Дефиниција}[section]
+\newtheorem{example}{Пример}[section]
+\newtheorem{exercise}{Вежба}[section]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лема}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Забелешка}
+
+% ----------------------------------------------------------------
+% ГРАФИКА И ДИЈАГРАМИ
+% ----------------------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{static_diagrams/}{animations/}}
+
+% За TikZ (опционално)
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% ----------------------------------------------------------------
+% LAYOUT И ФОРМАТИРАЊЕ
+% ----------------------------------------------------------------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing  % Поголем проредок за читливост
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+
+% ----------------------------------------------------------------
+% ДРУГИ КОРИСНИ ПАКЕТИ
+% ----------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{mathblue}{RGB}{0,91,187}
+\definecolor{examplegreen}{RGB}{0,128,0}
+
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=mathblue,
+    citecolor=mathblue,
+    urlcolor=mathblue,
+    pdfauthor={Автор},
+    pdftitle={Математика - 8 клас}
+}
+
+% ----------------------------------------------------------------
+% CUSTOM COMMANDS
+% ----------------------------------------------------------------
+\newcommand{\N}{\mathbb{N}}  % Природни броеви
+\newcommand{\Z}{\mathbb{Z}}  % Цели броеви
+\newcommand{\Q}{\mathbb{Q}}  % Рационални броеви
+\newcommand{\R}{\mathbb{R}}  % Реални броеви
+
+% Боксови за примери
+\usepackage[most]{tcolorbox}
+\newtcolorbox{examplebox}{
+    colback=examplegreen!5!white,
+    colframe=examplegreen!75!black,
+    title=Пример
+}
+
+\newtcolorbox{notebox}{
+    colback=mathblue!5!white,
+    colframe=mathblue!75!black,
+    title=Забелешка
+}
+
+% ----------------------------------------------------------------
+% МЕТАПОДАТОЦИ
+% ----------------------------------------------------------------
+\title{
+    {\Huge Математика}\\[0.5cm]
+    {\Large За 8 клас основно образование}
+}
+\author{Автор: Име Презиме}
+\date{2026}
+
+% ================================================================
+% ПОЧЕТОК НА ДОКУМЕНТОТ
+% ================================================================
+\begin{document}
+
+% ----------------------------------------------------------------
+% НАСЛОВНА СТРАНА
+% ----------------------------------------------------------------
+\maketitle
+
+\tableofcontents
+\clearpage
+
+% ================================================================
+% ГЛАВА 1: РАЦИОНАЛНИ БРОЕВИ
+% ================================================================
+\chapter{Рационални броеви}
+
+\section{Вовед}
+
+Рационалните броеви се броеви кои можат да се запишат како дропка 
+$\frac{p}{q}$, каде што $p \in \Z$ и $q \in \Z \setminus \{0\}$.
+
+\begin{definition}[Рационален број]
+Рационален број е број кој може да се претстави како количник на два 
+цели броја, т.е. $r = \frac{p}{q}$, каде $p, q \in \Z$ и $q \neq 0$.
+\end{definition}
+
+% ----------------------------------------------------------------
+% ВМЕТНУВАЊЕ НА ASYMPTOTE ДИЈАГРАМ
+% ----------------------------------------------------------------
+\subsection{Броевна оска}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{number_line_example.pdf}
+\caption{Броевна оска со рационални броеви}
+\label{fig:number_line}
+\end{figure}
+
+\section{Операции со рационални броеви}
+
+\subsection{Собирање и одземање}
+
+\begin{examplebox}
+Пресметај: $\frac{2}{3} + \frac{1}{4}$
+
+\textbf{Решение:}
+\begin{align*}
+\frac{2}{3} + \frac{1}{4} &= \frac{2 \cdot 4}{3 \cdot 4} + \frac{1 \cdot 3}{4 \cdot 3} \\
+                          &= \frac{8}{12} + \frac{3}{12} \\
+                          &= \frac{11}{12}
+\end{align*}
+\end{examplebox}
+
+\subsection{Множење и делење}
+
+За множење на дропки важи:
+\begin{equation}
+\frac{a}{b} \cdot \frac{c}{d} = \frac{a \cdot c}{b \cdot d}
+\end{equation}
+
+% ----------------------------------------------------------------
+% ВЕЖБИ
+% ----------------------------------------------------------------
+\section{Вежби}
+
+\begin{exercise}
+Пресметај:
+\begin{multicols}{2}
+\begin{enumerate}[label=\alph*)]
+    \item $\frac{1}{2} + \frac{1}{3}$
+    \item $\frac{3}{4} - \frac{1}{6}$
+    \item $\frac{2}{5} \cdot \frac{3}{7}$
+    \item $\frac{5}{8} : \frac{2}{3}$
+\end{enumerate}
+\end{multicols}
+\end{exercise}
+
+% ================================================================
+% ГЛАВА 2: КВАДРАТНА ФУНКЦИЈА
+% ================================================================
+\chapter{Квадратна функција}
+
+\section{Дефиниција и график}
+
+\begin{definition}[Квадратна функција]
+Функцијата $f(x) = ax^2 + bx + c$, каде $a \neq 0$, се нарекува 
+квадратна функција.
+\end{definition}
+
+% ----------------------------------------------------------------
+% ВМЕТНУВАЊЕ НА КОМПЛЕКСЕН ASYMPTOTE ДИЈАГРАМ
+% ----------------------------------------------------------------
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{kompleksen_primer.pdf}
+\caption{График на функцијата $f(x) = x^2 - 4x + 3$}
+\label{fig:parabola}
+\end{figure}
+
+Од Слика~\ref{fig:parabola} може да се види дека:
+\begin{itemize}
+    \item Темето на параболата е во точката $V(2, -1)$
+    \item Нултите се $x_1 = 1$ и $x_2 = 3$
+    \item Параболата пресекува ја $y$-оската во $(0, 3)$
+\end{itemize}
+
+\begin{notebox}
+Параболата е симетрична во однос на правата $x = 2$ (оската на симетрија).
+\end{notebox}
+
+% ----------------------------------------------------------------
+% INLINE TikZ ПРИМЕР
+% ----------------------------------------------------------------
+\subsection{Координатен систем}
+
+Координатниот систем се состои од две меѓусебно нормални прави:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % Оски
+    \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+    \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+    
+    % Точка
+    \fill[red] (2,1.5) circle (3pt);
+    \draw[dashed] (2,0) -- (2,1.5) -- (0,1.5);
+    \node[below] at (2,0) {$2$};
+    \node[left] at (0,1.5) {$1.5$};
+    \node[above right] at (2,1.5) {$P(2, 1.5)$};
+\end{tikzpicture}
+\end{center}
+
+% ================================================================
+% ДОПОЛНИТЕЛНИ РЕСУРСИ
+% ================================================================
+\chapter{Дополнителни ресурси}
+
+\section{Листа на формули}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Формула} & \textbf{Израз} \\
+\hline
+Площина на квадрат & $P = a^2$ \\
+Площина на круг & $P = \pi r^2$ \\
+Плоштина на триаголник & $P = \frac{a \cdot h}{2}$ \\
+Питагорова теорема & $a^2 + b^2 = c^2$ \\
+\hline
+\end{tabular}
+\caption{Основни геометриски формули}
+\end{table}
+
+% ================================================================
+% КРАЈ
+% ================================================================
+\end{document}

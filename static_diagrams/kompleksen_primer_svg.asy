@@ -1,10 +1,9 @@
-// Задолжителен header за кирилица
-settings.tex="pdflatex";
-settings.outformat="pdf";
+// Задолжителен header за кирилица + SVG output
+settings.tex="latex";
+settings.outformat="svg";
 texpreamble("\usepackage[T2A]{fontenc}");
 texpreamble("\usepackage[utf8]{inputenc}");
 texpreamble("\usepackage[russian]{babel}");
-texpreamble("\usepackage{lmodern}"); // Latin Modern фонтови наместо Computer Modern
 
 size(500, 400);
 
