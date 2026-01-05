@@ -34,7 +34,7 @@ draw(shift(A_pos)*((w/2, 0)--(w/2, h)), linePen); // Вертикална под
 for(int i=1; i<5; ++i) {
     draw(shift(A_pos)*((0, i*h/5)--(w, i*h/5)), linePen); // Хоризонтални линии
 }
-label("A", A_pos + (w/2, -0.4), S);
+label("A", A_pos + (w/2, -0.4), fontsize(12pt));
 
 
 // --- ПРАВОАГОЛНИК B (Средина) ---
@@ -42,7 +42,7 @@ pair B_pos = (w + gap, 0);
 
 // Рамка за B (празен)
 draw(shift(B_pos)*scale(w, h)*unitsquare, linePen);
-label("B", B_pos + (w/2, -0.4), S);
+label("B", B_pos + (w/2, -0.4), fontsize(12pt));
 
 
 // --- ПРАВОАГОЛНИК C (Десно) ---
@@ -57,7 +57,7 @@ draw(shift(C_pos)*scale(w, h)*unitsquare, linePen);
 for(int i=1; i<5; ++i) {
     draw(shift(C_pos)*((i*w/5, 0)--(i*w/5, h)), linePen); // Вертикални линии
 }
-label("C", C_pos + (w/2, -0.4), S);
+label("C", C_pos + (w/2, -0.4), fontsize(12pt));
 
 
 // --- СТРЕЛКИ ---

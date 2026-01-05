@@ -184,14 +184,14 @@ label("$y = x^2$", (1.5, 3), red);
 1. **Секогаш користи го header-ot** за македонски текст (СИТЕ 6 линии вклучувајќи lmodern)
 2. **За LaTeX математика** користи `$...$` внатре во label()
 3. **За обичен македонски текст** директно го пиши (пр. `label("Круг", ...)`)
-4. **Генерирај PDF** не PNG за најдобар квалитет на текстот
+4. **Генерирај EPS** (не PDF директно) поради MiKTeX 25.12 некомпатибилност
 5. **Координатен систем** - центарот е (0,0), оските одат во сите насоки
 6. **Бои и стил** - користи `+1.5` или `+2` за дебелина (не `+linewidth(N)`)
-7. **fontsize()** може да предизвика runtime warning - безбедно игнорирај, PDF ќе се генерира
+7. **fontsize()** ПРЕДИЗВИКУВА runtime грешка со MiKTeX 25.12 - ИЗБЕГНУВАЈ го!
 
 ## ⚠️ Познати Проблеми
 
-### Runtime Warning: `pic.addBox` 
+### Runtime Warning: `pic.addBox` (КРИТИЧНО - MiKTeX 25.12)
 Ако видиш:
 ```
 pic.addBox(position,position,min(f),max(f));
@@ -199,50 +199,66 @@ pic.addBox(position,position,min(f),max(f));
 plain_Label.asy: 321.15: runtime:
 ```
 
-**НЕ Е ПРОБЛЕМ!** Ова е познат Asymptote bug со `fontsize()` и `label()`.
-- PDF фајлот **ќе се генерира правилно**
-- Кирилскиот текст **ќе биде точен**
-- Можеш безбедно да го игнорираш warning-от
+**⚠️ ПРОБЛЕМ:** MiKTeX 25.12 (декември 2025) има некомпатибилност со Asymptote 2.88!
+- PDF фајлот **НЕМА** да се генерира (грешка при LaTeX обработка)
+- EPS фајлот **ЌЕ** се генерира успешно
 
-**Алтернатива:** Користи LaTeX формат за сè:
-```asymptote
-// Наместо:
-label("Македонски текст", (x,y), fontsize(12pt));
+**WORKAROUND (Работи 100%):**
 
-// Користи:
-label("$\\text{Македонски текст}$", (x,y));
+```powershell
+# Чекор 1: Генерирај EPS наместо PDF
+asy diagram.asy -f eps
+
+# Чекор 2: Конвертирај EPS → PDF со Ghostscript
+gswin64c -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dEPSCrop -sOutputFile="D:\full\path\diagram.pdf" "D:\full\path\diagram.eps"
+
+# Чекор 3: Отвори PDF
+Invoke-Item diagram.pdf
 ```
+
+**ТРАЈНО РЕШЕНИЕ:**
+- Downgrade на MiKTeX на постара верзија (пред 25.12)
+- Чекај update на Asymptote за компатибилност
+- Користи го workaround-от погоре
 
 ## Команда за Генерирање
 
-### Метод 1: PDF (Препорачано за Word/LaTeX)
+### Метод 1: EPS → PDF (ПРЕПОРАЧАНО - Работи со MiKTeX 25.12)
 ```powershell
 # Зачувај код во фајл (пр. diagram.asy)
-# Потоа изврши:
-& "C:\Program Files\Asymptote\asy.exe" diagram.asy
+# Генерирај EPS
+asy diagram.asy -f eps
 
-# Ова креира diagram.pdf кој можеш да го отвориш
+# Конвертирај во PDF
+$pdf = "D:\Math_Projects\mk-math-textbooks-visuals\grade_08\diagram.pdf"
+$eps = "D:\Math_Projects\mk-math-textbooks-visuals\grade_08\diagram.eps"
+gswin64c -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dEPSCrop "-sOutputFile=$pdf" "$eps"
 ```
 
-### Метод 2: SVG за Illustrator (со вградени фонтови)
+### Метод 2: Директен PDF (Работи само со стари MiKTeX верзии)
 ```powershell
-# Автоматски рендерира PDF и отвара во Illustrator
-python render_svg.py diagram.asy
-
-# Во Illustrator:
-# 1. File → Save As...
-# 2. Format: SVG (svg)
-# 3. SVG Options → Fonts: Convert to Outline или Embed
-# 4. Save → Готово!
+# ⚠️ НЕ РАБОТИ СО MiKTeX 25.12!
+asy diagram.asy -f pdf
 ```
 
-### Метод 3: Директен SVG (БЕЗ кирилична поддршка - НЕ ПРЕПОРАЧАНО)
+### Метод 3: SVG за Illustrator (со вградени фонтови)
+```powershell
+# ⚠️ Прво генерирај EPS, конвертирај во PDF, потоа користи render_svg.py
+# (render_svg.py може да не работи директно со MiKTeX 25.12)
+
+# Алтернатива: Рачна конверзија
+# 1. Генерирај EPS → PDF (погледни Метод 1)
+# 2. Отвори PDF во Illustrator
+# 3. File → Save As → SVG
+```
+
+### Метод 4: Директен SVG (БЕЗ кирилична поддршка - НЕ ПРЕПОРАЧАНО)
 ```powershell
 # Промени во .asy фајлот:
 # settings.outformat="svg";  (наместо "pdf")
 
 # Рендерирај
-& "C:\Program Files\Asymptote\asy.exe" diagram.asy
+asy diagram.asy
 
 # ⚠️ Македонските букви може да НЕ се прикажат правилно!
 ```
